@@ -1,8 +1,31 @@
-#include "opencv2/imgcodecs.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/imgproc.hpp"
-using namespace cv;
+#include <iostream>
+#include "ImageTester.h"
 using namespace std;
+
+// En este main, escribimos la imagen que queremos probar (metalpipe.png) y el procesador lo lee bien pero al intentar detectar lineas, salta una excepcion
+
+/*int main(int argc, char** argv)
+{
+
+	// Acceder a la imagen que esta en la carpeta Assets
+	cout << "Ingrese el nombre de la imagen que desea probar: ";
+
+	string imagen = "";
+	std::cin >> imagen;
+
+	// Verificar si hay al menos un argumento
+	if (imagen == "") {
+		std::cerr << "Error: Se requiere un argumento." << std::endl;
+		return 1;
+	}
+
+	string pathFile = "Assets/" + imagen;
+	ImageTester* tester = new ImageTester(pathFile);
+	tester->testImage();
+	delete tester;
+	return 0;
+}*/
+
 int main(int argc, char** argv)
 {
 	// Declare the output variables
@@ -22,6 +45,7 @@ int main(int argc, char** argv)
 	// Copy edges to the images that will display the results in BGR
 	cvtColor(dst, cdst, COLOR_GRAY2BGR);
 	cdstP = cdst.clone();
+
 	// Standard Hough Line Transform
 	vector<Vec2f> lines; // will hold the results of the detection
 	HoughLines(dst, lines, 1, CV_PI / 180, 100, 0, 0); // runs the actual detection

@@ -133,7 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Analyzer.cpp" />
+    <ClCompile Include="..\src\ImageTester.cpp" />
+    <ClCompile Include="..\src\ImgPreProcessor.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\PatternDetector.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Analyzer.h" />
+    <ClInclude Include="..\src\ImageTester.h" />
+    <ClInclude Include="..\src\ImgPreProcessor.h" />
+    <ClInclude Include="..\src\PatternDetector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
