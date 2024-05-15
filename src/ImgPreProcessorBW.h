@@ -7,6 +7,7 @@ public:
 	 cv::Mat processImage() override;
 	 ImgPreProcessorBW(std::string fileName) :ImgPreProcessor(fileName) {};
 	 ~ImgPreProcessorBW() {};
-
+private: 
+	Mat destNoNoise;
 };
 

@@ -21,7 +21,7 @@ void ImageTester::testImage()
 	Mat img = preProcessor->processImage();
 
 	// Detectamos las lineas en la imagen
-	patternDetector->detectLines(img, preProcessor->getCdst(), preProcessor->getCdstP());
+	patternDetector->detectLines(img, preProcessor->getCdst().clone(), preProcessor->getCdstP());
 
 	// Detectamos el patron de lineas en la imagen
 	patternDetector->detectPattern();

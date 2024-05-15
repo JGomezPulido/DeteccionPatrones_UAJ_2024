@@ -1,5 +1,6 @@
 #include "ImgPreProcessorBW.h"
 #include "opencv2/imgproc.hpp"
+#include <opencv2/photo.hpp>
 #include <iostream>
 
 cv::Mat ImgPreProcessorBW::processImage()
@@ -19,11 +20,22 @@ cv::Mat ImgPreProcessorBW::processImage()
 		return cv::Mat(); // Devuelve Mat vacia
 	}
 
+	cvtColor(source, destino, COLOR_GRAY2BGR);
+	
+	// -----IMPORTANTE QUITAR RUIDO DE LA IMAGEN ANTES DE LA DETECCION DE BORDES----
+	//fastNlMeansDenoising(destino, destNoNoise);
+	
 	// Edge detection
-	Canny(source, destino, 50, 200, 3);
+	// ---CALCULOS---------
+	// Los limites (thresholds) del metodo se pueden calcular
+	// median = median of the frame’s grayscale values
+	// Sigma = 0.33 por alguna razon, no sabemos que es lolazo
+	//cannyTh1 = Max(0,(1 ? sigma) ? median)
+	//cannyTh2 = Max(255,(1 + sigma) ? median)
+
+	Canny(destino, cdst, 50, 200, 3);
 	// Copy edges to the images that will display the results in BGR
-	cvtColor(destino, cdst, COLOR_GRAY2BGR);
 	cdstP = cdst.clone();
 
-	return destino;
+	return cdst;
 }
