@@ -23,6 +23,7 @@ int main(int argc, char** argv)
 	ImageTester* tester = new ImageTester(pathFile);
 	tester->testImage();
 	delete tester;
+	waitKey();
 	return 0;
 }
 
