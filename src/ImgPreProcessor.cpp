@@ -34,5 +34,5 @@ cv::Mat ImgPreProcessor::processImage()
 	cvtColor(destino, cdst, COLOR_GRAY2BGR);
 	cdstP = cdst.clone();
 
-	return cdst;
+	return destino;
 }
