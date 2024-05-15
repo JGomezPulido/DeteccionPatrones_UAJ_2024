@@ -1,10 +1,9 @@
 #include "ImageTester.h"
 
-
 ImageTester::ImageTester(std::string fileName)
 {
 	pathFile = fileName;
-	preProcessor = new ImgPreProcessor(fileName);
+	preProcessor = new ImgPreProcessorBW(fileName);
 	patternDetector = new PatternDetector();
 	analyzer = new Analyzer();
 }
@@ -22,7 +21,7 @@ void ImageTester::testImage()
 	Mat img = preProcessor->processImage();
 
 	// Detectamos las lineas en la imagen
-	patternDetector->detectLines(img);
+	patternDetector->detectLines(img, preProcessor->getCdst(), preProcessor->getCdstP());
 
 	// Detectamos el patron de lineas en la imagen
 	patternDetector->detectPattern();

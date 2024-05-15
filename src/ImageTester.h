@@ -1,8 +1,10 @@
 #pragma once
-#include "ImgPreProcessor.h"
+#include "ImgPreProcessorBW.h"
 #include "PatternDetector.h"
 #include "Analyzer.h"
 #include <string>
+
+
 class ImageTester
 {
 private:

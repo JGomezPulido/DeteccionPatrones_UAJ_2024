@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 	delete tester;
 	return 0;
 }
-//
+
 //int main(int argc, char** argv)
 //{
 //	// Declare the output variables
