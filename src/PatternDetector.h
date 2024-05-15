@@ -13,7 +13,7 @@ class PatternDetector
 	public:
 	PatternDetector();
 	~PatternDetector();
-	virtual void detectLines(Mat destino, Mat cdst, Mat cdstP);
+	virtual void detectLines(Mat destino);
 	virtual void detectPattern();
 };
 

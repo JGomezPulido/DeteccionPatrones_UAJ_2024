@@ -12,7 +12,7 @@ PatternDetector::~PatternDetector()
 {
 }
 
-void PatternDetector::detectLines(Mat destino, Mat cdst, Mat cdstP)
+void PatternDetector::detectLines(Mat destino)
 {
 	//El metodo HoughLinesP detecta lineas en una imagen y las guarda en un vector de Vec4i
 	// Vec4i es un vector de 4 enteros, que representan las coordenadas de dos puntos en la imagen
@@ -26,7 +26,7 @@ void PatternDetector::detectLines(Mat destino, Mat cdst, Mat cdstP)
 	// El HoughLinesP devuelve SEGMENTOS de linea, no una linea completa, segun los parametros que se le pasen (Como la longitud minima de linea)
 		// Draw the lines
 	Mat tmp;
-	cvtColor(cdstP, tmp, COLOR_GRAY2RGB);
+	cvtColor(destino, tmp, COLOR_GRAY2RGB);
 	for (size_t i = 0; i < linesP.size(); i++)
 	{
 		Vec4i l = linesP[i];

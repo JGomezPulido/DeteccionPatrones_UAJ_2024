@@ -9,5 +9,7 @@ public:
 	 ~ImgPreProcessorBW() {};
 private: 
 	Mat destNoNoise;
+
+	void lessNoise(Mat source);
 };
 
