@@ -10,6 +10,10 @@ ImgPreProcessor::ImgPreProcessor(Mat image)
 	source = image;
 }
 
+ImgPreProcessor::ImgPreProcessor()
+{
+}
+
 ImgPreProcessor::~ImgPreProcessor()
 {
 }

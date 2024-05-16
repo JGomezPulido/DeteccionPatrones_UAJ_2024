@@ -5,9 +5,10 @@
 #include <opencv2/highgui.hpp>
 #include "Analyzer.h"
 
-cv::Mat ImgPreProcessorBW::processImage()
+cv::Mat ImgPreProcessorBW::processImage(Mat image)
 {
 	// Cambia la resolucion
+	source = image;
 	//cv::resize(source, source, Size(910, 512));
 	cvtColor(source, destino, COLOR_GRAY2BGR);		
 

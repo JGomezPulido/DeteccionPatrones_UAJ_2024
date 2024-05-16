@@ -17,8 +17,17 @@ private:
 
 public:
 	ImageTester(std::string fileName);
+	ImageTester(cv::Mat imagen);
+	ImageTester();
+	ImageTester(const cv::Mat& initialImage,
+				ImgPreProcessor* preProcess, PatternDetector* patternDetect, Analyzer* analyzer) 
+				: image(initialImage), 
+				preProcessor(preProcess), patternDetector(patternDetect), analyzer(analyzer) {} //overloading
+
 	~ImageTester();
 	void testImage();
+	void testImage(const cv::Mat& imageParam);
+
 
 };
 

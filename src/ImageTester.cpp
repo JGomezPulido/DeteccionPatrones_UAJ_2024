@@ -19,6 +19,21 @@ ImageTester::ImageTester(std::string fileName)
 	analyzer = new Analyzer();
 }
 
+ImageTester::ImageTester(cv::Mat imagen)
+{
+	image = imagen;
+	preProcessor = new ImgPreProcessorBW(image);
+	patternDetector = new StraightPatternDetector();
+	analyzer = new Analyzer();
+}
+
+ImageTester::ImageTester()
+{
+	preProcessor = new ImgPreProcessorBW();
+	patternDetector = new StraightPatternDetector();
+	analyzer = new Analyzer();
+}
+
 ImageTester::~ImageTester()
 {
 	delete preProcessor;
@@ -28,17 +43,24 @@ ImageTester::~ImageTester()
 
 void ImageTester::testImage()
 {
+	testImage(image);
+
+}
+
+void ImageTester::testImage(const cv::Mat& imageParam)
+{
+
 	// Analizamos el brillo de la imagen	
-	analyzer->analyzeImage(image);		
-	
+	analyzer->analyzeImage(imageParam);
+
 	// Procesamos la imagen y guardamos el material
-	Mat img = preProcessor->processImage();	
+	Mat img = preProcessor->processImage(imageParam);
 
 	// Detectamos las lineas en la imagen
-	patternDetector->detectLines(img);	
+	patternDetector->detectLines(img);
 
 	// Detectamos el patron de lineas en la imagen
-	patternDetector->detectPattern();	
+	patternDetector->detectPattern();
 }
 
 
