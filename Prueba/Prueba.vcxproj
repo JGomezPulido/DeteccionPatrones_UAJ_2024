@@ -139,12 +139,14 @@
     <ClCompile Include="..\src\ImgPreProcessorBW.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\StraightPatternDetector.cpp" />
+    <ClCompile Include="..\src\Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Analyzer.h" />
     <ClInclude Include="..\src\ImageTester.h" />
     <ClInclude Include="..\src\ImgPreProcessor.h" />
     <ClInclude Include="..\src\ImgPreProcessorBW.h" />
+    <ClInclude Include="..\src\Menu.h" />
     <ClInclude Include="..\src\PatternDetector.h" />
     <ClInclude Include="..\src\StraightPatternDetector.h" />
   </ItemGroup>

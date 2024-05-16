@@ -33,6 +33,9 @@
     <ClCompile Include="..\src\StraightPatternDetector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Analyzer.h">
@@ -51,6 +54,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\StraightPatternDetector.h">
+    <ClInclude Include="..\src\Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,27 +2,21 @@
 #include "ImageTester.h"
 #include "opencv2/highgui.hpp"
 
+#include "Menu.h"
 using namespace std;
 
 // En este main, escribimos la imagen que queremos probar (metalpipe.png) y el procesador lo lee bien pero al intentar detectar lineas, salta una excepcion
 
 int main(int argc, char** argv)
 {
-
-	// Acceder a la imagen que esta en la carpeta Assets
-	cout << "Ingrese el nombre de la imagen que desea probar: ";
-
-	string imagen = "";
-	std::cin >> imagen;
-
-	// Verificar si hay al menos un argumento
-	if (imagen == "") {
-		std::cerr << "Error: Se requiere un argumento." << std::endl;
-		return 1;
-	}
-
-	string pathFile = "Assets/" + imagen;
-	ImageTester* tester = new ImageTester(pathFile);
+	// Pregunta input
+	bool isImage;
+	string path = "";
+	Menu* menu = new Menu();
+	menu->runMenu(isImage, path);
+	
+	// Image tester
+	ImageTester* tester = new ImageTester(path);
 	tester->testImage();
 	delete tester;
 	cv::waitKey();
