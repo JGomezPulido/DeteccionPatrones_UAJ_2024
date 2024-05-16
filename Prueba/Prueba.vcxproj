@@ -140,6 +140,7 @@
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\StraightPatternDetector.cpp" />
     <ClCompile Include="..\src\Menu.cpp" />
+    <ClCompile Include="..\src\VideoTester.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Analyzer.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="..\src\Menu.h" />
     <ClInclude Include="..\src\PatternDetector.h" />
     <ClInclude Include="..\src\StraightPatternDetector.h" />
+    <ClInclude Include="..\src\VideoTester.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

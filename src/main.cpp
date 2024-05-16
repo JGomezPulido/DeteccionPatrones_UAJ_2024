@@ -14,12 +14,24 @@ int main(int argc, char** argv)
 	string path = "";
 	Menu* menu = new Menu();
 	menu->runMenu(isImage, path);
-	
-	// Image tester
-	ImageTester* tester = new ImageTester(path);
-	tester->testImage();
-	delete tester;
+
+
+	if (isImage) {
+		// Image tester
+		ImageTester* tester = new ImageTester(path);
+		tester->testImage();
+		delete tester;
+
+	}
+	else {
+
+		// Video tester
+
+	}
+
+	// Delete
 	delete menu;
+
 	cv::waitKey();
 	return 0;
 }
