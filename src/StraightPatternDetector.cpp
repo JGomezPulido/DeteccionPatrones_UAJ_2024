@@ -1,18 +1,16 @@
-#include "PatternDetector.h"
+#include "StraightPatternDetector.h"
 #include "ImgPreProcessor.h"
-using namespace cv;
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
 
-PatternDetector::PatternDetector()
+StraightPatternDetector::StraightPatternDetector()
 {
 	lines = std::vector<Vec2f>();
 	linesP = std::vector<Vec4i>();
 }
 
-PatternDetector::~PatternDetector()
-{
-}
-
-void PatternDetector::detectLines(Mat destino)
+void StraightPatternDetector::detectLines(Mat destino)
 {
 	//El metodo HoughLinesP detecta lineas en una imagen y las guarda en un vector de Vec4i
 	// Vec4i es un vector de 4 enteros, que representan las coordenadas de dos puntos en la imagen
@@ -39,7 +37,7 @@ void PatternDetector::detectLines(Mat destino)
 
 }
 
-void PatternDetector::detectPattern()
+void StraightPatternDetector::detectPattern()
 {
 	// Con el vector de lineas detectadas, se puede intentar detectar un patron de lineas en la imagen
 

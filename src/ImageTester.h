@@ -1,9 +1,9 @@
 #pragma once
-#include "ImgPreProcessorBW.h"
-#include "PatternDetector.h"
-#include "Analyzer.h"
 #include <string>
 
+class ImgPreProcessor;
+class PatternDetector;
+class Analyzer;
 
 class ImageTester
 {

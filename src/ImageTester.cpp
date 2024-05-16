@@ -1,10 +1,13 @@
 #include "ImageTester.h"
+#include "ImgPreProcessorBW.h"
+#include "StraightPatternDetector.h"
+#include "Analyzer.h"
 
 ImageTester::ImageTester(std::string fileName)
 {
 	pathFile = fileName;
 	preProcessor = new ImgPreProcessorBW(fileName);
-	patternDetector = new PatternDetector();
+	patternDetector = new StraightPatternDetector();
 	analyzer = new Analyzer();
 }
 

@@ -138,7 +138,7 @@
     <ClCompile Include="..\src\ImgPreProcessor.cpp" />
     <ClCompile Include="..\src\ImgPreProcessorBW.cpp" />
     <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\PatternDetector.cpp" />
+    <ClCompile Include="..\src\StraightPatternDetector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Analyzer.h" />
@@ -146,6 +146,7 @@
     <ClInclude Include="..\src\ImgPreProcessor.h" />
     <ClInclude Include="..\src\ImgPreProcessorBW.h" />
     <ClInclude Include="..\src\PatternDetector.h" />
+    <ClInclude Include="..\src\StraightPatternDetector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

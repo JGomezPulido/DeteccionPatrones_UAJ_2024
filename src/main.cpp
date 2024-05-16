@@ -1,5 +1,7 @@
 #include <iostream>
 #include "ImageTester.h"
+#include "opencv2/highgui.hpp"
+
 using namespace std;
 
 // En este main, escribimos la imagen que queremos probar (metalpipe.png) y el procesador lo lee bien pero al intentar detectar lineas, salta una excepcion
@@ -23,7 +25,7 @@ int main(int argc, char** argv)
 	ImageTester* tester = new ImageTester(pathFile);
 	tester->testImage();
 	delete tester;
-	waitKey();
+	cv::waitKey();
 	return 0;
 }
 
