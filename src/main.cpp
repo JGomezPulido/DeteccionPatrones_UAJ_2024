@@ -19,6 +19,7 @@ int main(int argc, char** argv)
 	ImageTester* tester = new ImageTester(path);
 	tester->testImage();
 	delete tester;
+	delete menu;
 	cv::waitKey();
 	return 0;
 }
