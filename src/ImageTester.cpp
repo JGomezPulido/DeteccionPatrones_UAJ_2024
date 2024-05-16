@@ -30,7 +30,7 @@ void ImageTester::testImage()
 	patternDetector->detectPattern();
 
 	// Analizamos el patron de lineas
-	analyzer->analyzeImage();
+	analyzer->analyzeImage(img);
 }
 
 
