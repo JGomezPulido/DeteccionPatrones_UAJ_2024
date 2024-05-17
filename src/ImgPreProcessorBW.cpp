@@ -7,10 +7,16 @@
 
 cv::Mat ImgPreProcessorBW::processImage(Mat image)
 {
+
 	// Cambia la resolucion
 	source = image;
-	//cv::resize(source, source, Size(910, 512));
-	cvtColor(source, destino, COLOR_GRAY2BGR);		
+	cv::resize(source, source, Size(910, 512));
+
+	
+	cvtColor(source, source, COLOR_BGR2GRAY);
+
+	cvtColor(source, destino, COLOR_GRAY2BGR);
+
 
 	// Reduce ruido desenfocando
 	lessNoise(destino);
