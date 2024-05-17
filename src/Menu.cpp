@@ -13,12 +13,16 @@ void Menu::runMenu(bool& isImage, std::string& path) {
 
 bool Menu::isImageOrVideo()
 {
+	char num = ' ';
 	// Recoge nombre de archivo
 	do {
-		std::cout << "Desea analizar un video(0) o una imagen(1)? Escribe 0 o 1\n";
-		std::cin >> isImage_;
+		std::cout << "Desea analizar un video(0) o una imagen(1)? Escribe 0 o 1" << std::endl;
+		std::cin >> num;
 
-	} while (isImage_ != 0 && isImage_ != 1);
+	} while (num != '0' && num != '1');
+
+	if (num == '1') isImage_ = true;
+	else isImage_ = false;
 
 	return isImage_;
 }

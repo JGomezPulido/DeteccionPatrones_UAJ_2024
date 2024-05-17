@@ -28,10 +28,8 @@ void VideoTester::testVideo()
             std::cout << "Fin del video." << std::endl;
             break;
         }
+        cv::imshow("video", frame);
         //imageTester->testImage(frame);
-        //cv::waitKey();
-
-       
+        cv::waitKey();
     }
-
 }
