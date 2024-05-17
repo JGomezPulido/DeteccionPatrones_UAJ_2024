@@ -12,7 +12,12 @@ cv::Mat ImgPreProcessorBW::processImage(Mat image)
 	source = image;
 	cv::resize(source, source, Size(910, 512));
 
-	cvtColor(source, source, COLOR_BGR2GRAY);
+	if (image.channels() != 1) {
+		// If the image has only one channel, it is grayscale
+		cvtColor(source, source, COLOR_BGR2GRAY);
+
+	}
+
 
 	cvtColor(source, destino, COLOR_GRAY2BGR);
 
