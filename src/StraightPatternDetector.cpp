@@ -15,7 +15,7 @@ void StraightPatternDetector::detectLines(const cv::Mat& destino)
 
 	// Esta funcion detecta lineas en una imagen binaria usando el algoritmo probabilistico de Hough
 	cv::HoughLinesP(destino, linesP, 1, CV_PI / 180, 50, 50, 10); // runs the actual detection
-
+	lines.clear();
 	//Calculate information for each line detected
 	for (const Vec4i& line : linesP) {
 		lines.push_back(LineInfo(line));
@@ -23,6 +23,7 @@ void StraightPatternDetector::detectLines(const cv::Mat& destino)
 
 	std::cout << "Number of lines: " << lines.size() << std::endl;
 	//agrupamos las lineas por líneas paralelas
+	groups.clear();
 	maxGroup = 0;
 	for (int i = 0; i < lines.size(); i++) {
 		LineInfo line = lines[i];
