@@ -1,12 +1,12 @@
 #include "ImageTester.h"
 #include "ImgPreProcessorBW.h"
-#include "StraightPatternDetector.h"
 #include "Analyzer.h"
+#include "StraightPatternDetector.h"
+
 
 ImageTester::ImageTester(std::string fileName)
 {
-	// Loads an image
-	// Hacer un try catch para manejar excepciones si no encuentra la imagen
+	// Leer la imagen
 	image = imread(samples::findFile(fileName), IMREAD_GRAYSCALE);					
 	// Check if image is loaded fine
 
@@ -43,16 +43,32 @@ ImageTester::~ImageTester()
 
 void ImageTester::testImage()
 {
-	testImage(image);
+	if(isImageDangerous(image))
+		std::cout << "La imagen es peligrosa" << std::endl;
+	else
+		std::cout << "La imagen no es peligrosa" << std::endl;
 
 }
 
-void ImageTester::testImage(const cv::Mat& imageParam)
+bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 {
 
-	// Analizamos el brillo de la imagen	
-	analyzer->analyzeImage(imageParam);
+	cv::Mat ogImage = imageParam.clone();
 
+	// Procesamos la imagen y guardamos el material
+	Mat img = preProcessor->processImage(imageParam);
+
+	// Detectamos las lineas en la imagen
+	patternDetector->detectLines(img);
+
+	// Si hay mucho brillo y un patron de lineas en la imagen, se considera peligrosa la imagen	
+	return patternDetector->detectPattern() && analyzer->analyze(ogImage);
+}
+
+bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash, PatternMap& movement){
+	
+	cv::Mat ogImage = imageParam.clone();
+	
 	// Procesamos la imagen y guardamos el material
 	Mat img = preProcessor->processImage(imageParam);
 
@@ -61,6 +77,10 @@ void ImageTester::testImage(const cv::Mat& imageParam)
 
 	// Detectamos el patron de lineas en la imagen
 	patternDetector->detectPattern();
+
+	// Se analiza el frame teniendo en cuenta los valores de brillo, flash y movimiento del anterior frame
+	return analyzer->analyze(ogImage, patternDetector->getPossiblePatterns(), brightness, flash, movement);
+
 }
 
 
