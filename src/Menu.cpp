@@ -3,28 +3,29 @@
 
 
 // METODOS PUBLICOS
-void Menu::runMenu(bool& isImage, std::string& path) {
-	isImage = isImageOrVideo();
-	path = getFilePath();
+void Menu::runMenu(int& inputOption, std::string& path) {
+	inputOption = isImageOrVideo();
+	if(inputOption) path = getFilePath();
 }
 
 
 // METODOS PRIVADOS
 
-bool Menu::isImageOrVideo()
+int Menu::isImageOrVideo()
 {
 	char num = ' ';
 	// Recoge nombre de archivo
 	do {
-		std::cout << "Desea analizar un video(0) o una imagen(1)? Escribe 0 o 1" << std::endl;
+		std::cout << "Desea analizar una imagen(1) o un video(2)? Escribe 1 o 2 para testear o \"Q\" para salir" << std::endl;
 		std::cin >> num;
 
-	} while (num != '0' && num != '1');
+	} while (num != '1' && num != '2' && num != 'Q');
 
-	if (num == '1') isImage_ = true;
-	else isImage_ = false;
+	if (num == 'Q') optionType = 0; // Salir
+	else if (num == '1') optionType = 1; // Imagen
+	else optionType = 2; // Video
 
-	return isImage_;
+	return optionType;
 }
 
 std::string Menu::getFilePath()
@@ -33,7 +34,7 @@ std::string Menu::getFilePath()
 
 	// Recoge nombre de archivo
 	do {
-		std::cout << "Ingrese el nombre del archivo que desea probar: ";
+		std::cout << "\nIngrese el nombre del archivo que desea probar [Resolucion recomendada: 512px x 910px o superior]: " << std::endl;
 		std::cin >> fileName;
 
 	} while (fileName == "");

@@ -37,7 +37,7 @@ void VideoTester::testVideo()
     bool dangerousPattern = false;
 
     while (video.read(frame)) {
-        // Verificar si se ha llegado al final del video
+        // Verificar si ha llegado al final del video
         if (frame.empty()) {
             std::cout << "Fin del video." << std::endl;
             break;

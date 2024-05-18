@@ -4,14 +4,14 @@ class Menu
 {
 private:
 	std::string pathFile_;
-	bool isImage_;
+	int optionType;
 public:
-	Menu() { pathFile_ = "";}
+	Menu() { pathFile_ = ""; optionType = -1; }
 	~Menu() {};
-	void runMenu(bool& isImage, std::string& path);
+	void runMenu(int& inputOption, std::string& path);
 
 private:
-	bool isImageOrVideo();
+	int isImageOrVideo();
 	std::string getFilePath();
 };
 

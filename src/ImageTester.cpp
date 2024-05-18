@@ -23,12 +23,13 @@ ImageTester::~ImageTester()
 bool ImageTester::init()
 {
 	// Leer la imagen
-	image = imread(samples::findFile(fileName), IMREAD_GRAYSCALE);
-	// Check if image is loaded fine
-
-	if (image.empty()) {
+	try {
+		image = imread(samples::findFile(fileName), IMREAD_GRAYSCALE);
+	}
+	catch (Exception e) {
 		// Comunicar que no se ha encontrado la imagen
-		std::cerr << "Error: Failed to load or process image." << std::endl;
+		std::cout << e.what();
+		std::cerr << "ERROR: Failed to load or process image." << std::endl;
 		return false;
 	}
 

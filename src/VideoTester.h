@@ -8,7 +8,7 @@ class VideoTester
 
 private:
 	std::string fileName;
-	ImageTester* imageTester;
+	ImageTester* imageTester = nullptr;
 	cv::VideoCapture video;
 
 public:
@@ -16,6 +16,5 @@ public:
 	~VideoTester();
 	bool init();
 	void testVideo();
-
 };
 
