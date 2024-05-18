@@ -14,7 +14,7 @@ private:
 public:
 	VideoTester(std::string pathFile);
 	~VideoTester();
-	bool init();
+	bool init(double maxBr, double brDiff, double maxLF);
 	void testVideo();
 };
 

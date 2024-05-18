@@ -21,10 +21,15 @@ int main(int argc, char** argv)
 	// Salir
 	if (!option) return 0;
 
+	// Se usa 0.4, 0.2, 5 como valores por defecto para analizar la imagen o video, pero se pueden cambiar segun se desee
+	// 0.4 es el brillo maximo permitido
+	// 0.2 es la diferencia de brillo permitida entre frames
+	// 5 es la diferencia de lineas permitida entre frames
+
 	// Image tester
 	if (option == 1) {
 		ImageTester* iTester = new ImageTester(path);
-		if (!iTester->init()) {
+		if (!iTester->init(0.4,0.2,5)) {
 			std::cerr << "ERROR: No se ha podido inicializar image tester";
 			delete iTester;
 			iTester = nullptr;
@@ -36,7 +41,7 @@ int main(int argc, char** argv)
 	// Video tester
 	else {
 		VideoTester* vTester = new VideoTester(path);
-		if (!vTester->init()) {
+		if (!vTester->init(0.4,0.2,5)) {
 			std::cerr << "ERROR: No se ha podido inicializar video tester";
 			delete vTester;
 			vTester = nullptr;

@@ -6,11 +6,11 @@
 
 ImageTester::ImageTester(std::string pathFile) : fileName(pathFile) {}
 
-ImageTester::ImageTester()
+ImageTester::ImageTester(double maxBr, double brDiff, double maxLF)
 {
 	preProcessor = new ImgPreProcessorBW();
 	patternDetector = new StraightPatternDetector();
-	analyzer = new Analyzer();
+	analyzer = new Analyzer(maxBr, brDiff,maxLF);
 }
 
 ImageTester::~ImageTester()
@@ -20,7 +20,7 @@ ImageTester::~ImageTester()
 	delete analyzer;
 }
 
-bool ImageTester::init()
+bool ImageTester::init(double maxBr, double brDiff, double maxLF)
 {
 	// Leer la imagen
 	try {
@@ -35,7 +35,7 @@ bool ImageTester::init()
 
 	preProcessor = new ImgPreProcessorBW(image);
 	patternDetector = new StraightPatternDetector();
-	analyzer = new Analyzer();
+	analyzer = new Analyzer(maxBr,brDiff,maxLF);
 
 	return true;
 }
@@ -64,7 +64,7 @@ bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 	return patternDetector->detectPattern() && analyzer->analyze(ogImage);
 }
 
-bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash, PatternMap& movement) {
+bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash) {
 
 	cv::Mat ogImage = imageParam.clone();
 
@@ -78,7 +78,7 @@ bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& 
 	patternDetector->detectPattern();
 
 	// Se analiza el frame teniendo en cuenta los valores de brillo, flash y movimiento del anterior frame
-	return analyzer->analyze(ogImage, patternDetector->getPossiblePatterns(), brightness, flash, movement);
+	return analyzer->analyze(ogImage, patternDetector->getPossiblePatterns(), brightness, flash);
 
 }
 

@@ -1,10 +1,12 @@
 #include "Analyzer.h"
 
 
-Analyzer::Analyzer()
+Analyzer::Analyzer(double maxBr, double brDiff, double maxLF)
 {
 	// Tras varios experimentos, se ha determinado que un brillo mayor a 0.4 es peligroso
-	maxBrightness = 0.4;
+	maxBrightness = maxBr;
+	brightnessDiff = brDiff;
+	maxLinesFlash = maxLF;
 	dangerousPattern = false;
 }
 
@@ -18,56 +20,35 @@ bool Analyzer::analyzeBrightness(cv::Mat image)
 	double averageBrightness = cv::mean(image)[0];
 	averageBrightness = averageBrightness / 255.0; // Normalización opcional	
 
-	std::cout << "Average brightness: " << averageBrightness << std::endl;
+	std::cout << "Average brightness: " << averageBrightness << "\n" << std::endl;
 
 	return averageBrightness > maxBrightness;
 }
 
 // Se considera que si el brillo supera el maximo o la diferencia de brillo entre frames es mayor a 20, se considera peligroso
-bool Analyzer::analyzeBrightness(double brightness,cv::Mat frame2)
+bool Analyzer::analyzeBrightness(double& brightness,cv::Mat frame2)
 {
 	double averageBrightness = cv::mean(frame2)[0];
 	averageBrightness = averageBrightness / 255.0; // Normalización opcional	
 
 	double diff = std::abs(brightness - averageBrightness);
-
-	return (averageBrightness > maxBrightness || diff > 0.2);
+	brightness = averageBrightness;
+	std::cout << "Average brightness: " << averageBrightness << "\n" << std::endl;
+	return (averageBrightness > maxBrightness || diff > brightnessDiff);
 }
 
 // Si la diferencia de grupos de lineas en un patron en cada frame es mayor a 5, se considera un parpadeo peligroso
-bool Analyzer::analyzeFlash(int nLineasF1, int nLineasF2)
+bool Analyzer::analyzeFlash(int& nLineasF1, int nLineasF2)
 {
 	int diffNLineas = std::abs(nLineasF1 - nLineasF2);
-
-	return diffNLineas > 5;
+	nLineasF1 = nLineasF2;
+	return diffNLineas > maxLinesFlash;
 }
 
-bool Analyzer::analyzeMovement(const PatternMap& patternF1, const PatternMap& patternF2)
+bool Analyzer::analyze(cv::Mat ogImg, const PatternMap& pattern, double& brightness, int& flash)
 {
-	int limit = std::min(patternF1.size(), patternF2.size());
-
-	/*for (int i = 0; i < limit; i++)
-	{
-		double x1, x2;
-		double y1, y2;
-
-		x1 = patternF1[i].x;
-		x2 = patternF2[i].x;
-		y1 = patternF1[i].y;
-		y2 = patternF2[i].y;
-
-		double distance = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-	}*/
-
-
-
-	return false;
-}
-
-bool Analyzer::analyze(cv::Mat ogImg, const PatternMap& pattern, double& brightness, int& flash, PatternMap& movement)
-{
-	// Si el cambio de brillo es demasiado grande y el parpadeo o el movimiento del patron es demasiado grande, se considera peligroso
-	if (analyzeBrightness(ogImg) && (analyzeFlash(flash,pattern.size()) || analyzeMovement(movement,pattern)))
+	// Si el parpadeo entre frame y frame es muy grande (Teniendo en cuenta la diferencia de brillo y la diferencia entre patrones)
+	if (analyzeBrightness(brightness, ogImg) && analyzeFlash(flash,pattern.size()))
 	{
 		return true;
 	}

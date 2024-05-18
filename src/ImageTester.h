@@ -19,14 +19,14 @@ private:
 
 public:
 	ImageTester(std::string fileName);
-	ImageTester();
+	ImageTester(double maxBr, double brDiff, double maxLF);
 	ImageTester(const cv::Mat& initialImage) : image(initialImage) {} //overloading
 
 	~ImageTester();
-	bool init();
+	bool init(double maxBr, double brDiff, double maxLF);
 	void testImage();
 	bool isImageDangerous(const cv::Mat& imageParam);
-	bool testFrame(const cv::Mat& imageParam, double& brightness, int& flash, PatternMap& movement);
+	bool testFrame(const cv::Mat& imageParam, double& brightness, int& flash);
 
 
 };

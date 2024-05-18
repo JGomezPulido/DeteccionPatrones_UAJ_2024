@@ -1,8 +1,6 @@
 #include "VideoTester.h"
 #include <iostream>
 #include <opencv2/highgui.hpp>
-#include "StraightPatternDetector.h"
-
 
 
 VideoTester::VideoTester(std::string pathFile) : fileName(pathFile) {}
@@ -13,14 +11,14 @@ VideoTester::~VideoTester()
     video.release();
 }
 
-bool VideoTester::init()
+bool VideoTester::init(double maxBr, double brDiff, double maxLF)
 {
     if (!video.open(fileName)) {
         std::cerr << "ERROR: Unable to open video file." << std::endl;
         return false;
     }
 
-    imageTester = new ImageTester();
+    imageTester = new ImageTester(maxBr, brDiff, maxLF);
 
     return true;
 }
@@ -33,7 +31,6 @@ void VideoTester::testVideo()
     int i = 0;
     double brightness = 0;
     int flash = 0;
-    PatternMap movement = PatternMap();
     bool dangerousPattern = false;
 
     while (video.read(frame)) {
@@ -43,7 +40,7 @@ void VideoTester::testVideo()
             break;
         }
         
-        dangerousPattern = imageTester->testFrame(frame, brightness, flash, movement);
+        dangerousPattern = imageTester->testFrame(frame, brightness, flash);
        
         if (dangerousPattern) {
             if (i == 0)
@@ -51,12 +48,12 @@ void VideoTester::testVideo()
                 lastDangerousFrame = nFrame;
             }
             else if (i == -1) {
-                i == nFrame - lastDangerousFrame;
+                i = nFrame - lastDangerousFrame;
             }
             i++;
         }
         else {
-            if (i > 5)
+            if (i >= 5)
             {
                 std::cout << "El video es peligroso entre los frames " << lastDangerousFrame << " y " << nFrame << std::endl;   
             }
