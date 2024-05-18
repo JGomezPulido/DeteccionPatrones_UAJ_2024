@@ -12,21 +12,18 @@ class ImageTester
 {
 private:
 	cv::Mat image;
-	std::string pathFile;
-	ImgPreProcessor* preProcessor;
-	StraightPatternDetector* patternDetector;
-	Analyzer* analyzer;
+	std::string fileName;
+	ImgPreProcessor* preProcessor = nullptr;
+	StraightPatternDetector* patternDetector = nullptr;
+	Analyzer* analyzer = nullptr;
 
 public:
 	ImageTester(std::string fileName);
-	ImageTester(cv::Mat imagen);
 	ImageTester();
-	ImageTester(const cv::Mat& initialImage,
-				ImgPreProcessor* preProcess, StraightPatternDetector* patternDetect, Analyzer* analyzer)
-				: image(initialImage), 
-				preProcessor(preProcess), patternDetector(patternDetect), analyzer(analyzer) {} //overloading
+	ImageTester(const cv::Mat& initialImage) : image(initialImage) {} //overloading
 
 	~ImageTester();
+	bool init();
 	void testImage();
 	bool isImageDangerous(const cv::Mat& imageParam);
 	bool testFrame(const cv::Mat& imageParam, double& brightness, int& flash, PatternMap& movement);

@@ -4,28 +4,7 @@
 #include "StraightPatternDetector.h"
 
 
-ImageTester::ImageTester(std::string fileName)
-{
-	// Leer la imagen
-	image = imread(samples::findFile(fileName), IMREAD_GRAYSCALE);					
-	// Check if image is loaded fine
-
-	if (image.empty()) {	
-		// Comunicar que no se ha encontrado la imagen
-		std::cerr << "Error: Failed to load or process image." << std::endl;
-	}
-	preProcessor = new ImgPreProcessorBW(image);	
-	patternDetector = new StraightPatternDetector();
-	analyzer = new Analyzer();
-}
-
-ImageTester::ImageTester(cv::Mat imagen)
-{
-	image = imagen;
-	preProcessor = new ImgPreProcessorBW(image);
-	patternDetector = new StraightPatternDetector();
-	analyzer = new Analyzer();
-}
+ImageTester::ImageTester(std::string pathFile) : fileName(pathFile) {}
 
 ImageTester::ImageTester()
 {
@@ -41,9 +20,28 @@ ImageTester::~ImageTester()
 	delete analyzer;
 }
 
+bool ImageTester::init()
+{
+	// Leer la imagen
+	image = imread(samples::findFile(fileName), IMREAD_GRAYSCALE);
+	// Check if image is loaded fine
+
+	if (image.empty()) {
+		// Comunicar que no se ha encontrado la imagen
+		std::cerr << "Error: Failed to load or process image." << std::endl;
+		return false;
+	}
+
+	preProcessor = new ImgPreProcessorBW(image);
+	patternDetector = new StraightPatternDetector();
+	analyzer = new Analyzer();
+
+	return true;
+}
+
 void ImageTester::testImage()
 {
-	if(isImageDangerous(image))
+	if (isImageDangerous(image))
 		std::cout << "La imagen es peligrosa" << std::endl;
 	else
 		std::cout << "La imagen no es peligrosa" << std::endl;
@@ -65,10 +63,10 @@ bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 	return patternDetector->detectPattern() && analyzer->analyze(ogImage);
 }
 
-bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash, PatternMap& movement){
-	
+bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash, PatternMap& movement) {
+
 	cv::Mat ogImage = imageParam.clone();
-	
+
 	// Procesamos la imagen y guardamos el material
 	Mat img = preProcessor->processImage(imageParam);
 

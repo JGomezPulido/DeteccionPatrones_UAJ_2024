@@ -5,21 +5,24 @@
 
 
 
-VideoTester::VideoTester(std::string fileName)
-{
-
-    if (!video.open(fileName)) {
-		std::cerr << "ERROR: Unable to open video file." << std::endl;
-	}
-
-	imageTester = new ImageTester();
-
-}
+VideoTester::VideoTester(std::string pathFile) : fileName(pathFile) {}
 
 VideoTester::~VideoTester()
 {
     delete imageTester;
     video.release();
+}
+
+bool VideoTester::init()
+{
+    if (!video.open(fileName)) {
+        std::cerr << "ERROR: Unable to open video file." << std::endl;
+        return false;
+    }
+
+    imageTester = new ImageTester();
+
+    return true;
 }
 
 void VideoTester::testVideo()
@@ -32,8 +35,6 @@ void VideoTester::testVideo()
     int flash = 0;
     PatternMap movement = PatternMap();
     bool dangerousPattern = false;
-    //video.read(frame);
-    //imageTester->testImage(frame);
 
     while (video.read(frame)) {
         // Verificar si se ha llegado al final del video
@@ -41,8 +42,6 @@ void VideoTester::testVideo()
             std::cout << "Fin del video." << std::endl;
             break;
         }
-        //cv::imshow("video", frame);
-        //cv::waitKey();
         
         dangerousPattern = imageTester->testFrame(frame, brightness, flash, movement);
        

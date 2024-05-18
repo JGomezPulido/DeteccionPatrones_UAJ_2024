@@ -19,18 +19,30 @@ int main(int argc, char** argv)
 
 	if (isImage) {
 		// Image tester
-		ImageTester* tester = new ImageTester(path);
-		tester->testImage();
-		delete tester;
+		ImageTester* iTester = new ImageTester(path);
+		if (!iTester->init()) {
+			std::cerr << "ERROR: No se ha podido inicializar image tester";
+			delete iTester;
+			iTester = nullptr;
+			return 1;
+		}
+		iTester->testImage();
+		delete iTester;
 
 	}
 	else {
 
 		// Video tester
 		VideoTester* vTester = new VideoTester(path);
+		if (!vTester->init()) {
+
+			std::cerr << "ERROR: No se ha podido inicializar video tester";
+			delete vTester;
+			vTester = nullptr;
+			return 1;
+		}
 		vTester->testVideo();
 		delete vTester;
-
 	}
 
 	// Delete

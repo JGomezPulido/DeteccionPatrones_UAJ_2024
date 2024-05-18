@@ -7,13 +7,14 @@ class VideoTester
 {
 
 private:
-	std::string pathFile;
+	std::string fileName;
 	ImageTester* imageTester;
 	cv::VideoCapture video;
 
 public:
-	VideoTester(std::string fileName);
+	VideoTester(std::string pathFile);
 	~VideoTester();
+	bool init();
 	void testVideo();
 
 };
