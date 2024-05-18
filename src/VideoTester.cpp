@@ -26,6 +26,8 @@ void VideoTester::testVideo()
 {
     cv::Mat frame;
     int nFrame = 0;
+    int lastDangerousFrame = 0;
+    int i = 0;
     double brightness = 0;
     int flash = 0;
     PatternMap movement = PatternMap();
@@ -44,17 +46,33 @@ void VideoTester::testVideo()
         
         dangerousPattern = imageTester->testFrame(frame, brightness, flash, movement);
        
-        if (dangerousPattern)
-            nFrame++;
-        
+        if (dangerousPattern) {
+            if (i == 0)
+            {
+                lastDangerousFrame = nFrame;
+            }
+            else if (i == -1) {
+                i == nFrame - lastDangerousFrame;
+            }
+            i++;
+        }
+        else {
+            if (i > 5)
+            {
+                std::cout << "El video es peligroso entre los frames " << lastDangerousFrame << " y " << nFrame << std::endl;   
+            }
+            if (i == -1) {
+                i = 0;
+            }
+			else if (i != 0) {
+				i = -1;
+			}
+        }
+        nFrame++;
     }
-
-    // Mirar el numero de frames minimo para que se considere el video peligroso
-    if(nFrame > 5)
-        std::cout << "El video puede ser peligroso" << std::endl;
-    else
-        std::cout << "El video deberia ser seguro" << std::endl;
-
-
-
+    if (i > 5)  
+    {
+        std::cout << "El video es peligroso entre los frames " << lastDangerousFrame << " y " << nFrame << std::endl;   
+    }
+    std::cout << "Fin del video." << std::endl; 
 }
