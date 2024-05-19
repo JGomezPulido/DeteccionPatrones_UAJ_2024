@@ -51,7 +51,6 @@ void ImageTester::testImage()
 
 bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 {
-
 	cv::Mat ogImage = imageParam.clone();
 
 	// Procesamos la imagen y guardamos el material
@@ -64,9 +63,16 @@ bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 	return patternDetector->detectPattern() && analyzer->analyze(ogImage);
 }
 
-bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash) {
+bool ImageTester::testFrame(cv::Mat& imageParam, double& brightness, int& flash) {
+
+
+	if (imageParam.channels() != 1) {
+		// Adaptamos la imagen a escala de grises
+		cvtColor(imageParam, imageParam, COLOR_BGR2GRAY);
+	}
 
 	cv::Mat ogImage = imageParam.clone();
+
 
 	// Procesamos la imagen y guardamos el material
 	Mat img = preProcessor->processImage(imageParam);

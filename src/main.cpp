@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	// Image tester
 	if (option == 1) {
 		ImageTester* iTester = new ImageTester(path);
-		if (!iTester->init(0.4,0.2,5)) {
+		if (!iTester->init(0.4,0.2,10)) {
 			std::cerr << "ERROR: No se ha podido inicializar image tester";
 			delete iTester;
 			iTester = nullptr;
@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 	// Video tester
 	else {
 		VideoTester* vTester = new VideoTester(path);
-		if (!vTester->init(0.4,0.2,5)) {
+		if (!vTester->init(0.4,0.2,10)) {
 			std::cerr << "ERROR: No se ha podido inicializar video tester";
 			delete vTester;
 			vTester = nullptr;

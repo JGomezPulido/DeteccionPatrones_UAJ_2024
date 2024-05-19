@@ -34,6 +34,8 @@ std::string Menu::getFilePath()
 
 	// Recoge nombre de archivo
 	do {
+		// Aunque se pueda probar con resoluciones superiores, se recomienda 512px x 910px dado que si se supera,
+		// se recorta la imagen/video a 512 x 910 para que el procesamiento funcione
 		std::cout << "\nIngrese el nombre del archivo que desea probar [Resolucion recomendada: 512px x 910px o superior]: " << std::endl;
 		std::cin >> fileName;
 
