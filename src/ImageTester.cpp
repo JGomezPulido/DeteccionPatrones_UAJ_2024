@@ -6,10 +6,10 @@
 
 ImageTester::ImageTester(std::string pathFile) : fileName(pathFile) {}
 
-ImageTester::ImageTester(double maxBr, double brDiff, double maxLF)
+ImageTester::ImageTester(double maxBr, double brDiff, double maxLF, int threshold, double minLenght,double maxGap)
 {
 	preProcessor = new ImgPreProcessorBW();
-	patternDetector = new StraightPatternDetector();
+	patternDetector = new StraightPatternDetector(threshold, minLenght, maxGap);
 	analyzer = new Analyzer(maxBr, brDiff,maxLF);
 }
 
@@ -20,7 +20,7 @@ ImageTester::~ImageTester()
 	delete analyzer;
 }
 
-bool ImageTester::init(double maxBr, double brDiff, double maxLF)
+bool ImageTester::init(double maxBr, double brDiff, double maxLF, int threshold, double minLenght, double maxGap)
 {
 	// Leer la imagen
 	try {
@@ -34,7 +34,7 @@ bool ImageTester::init(double maxBr, double brDiff, double maxLF)
 	}
 
 	preProcessor = new ImgPreProcessorBW(image);
-	patternDetector = new StraightPatternDetector();
+	patternDetector = new StraightPatternDetector(threshold, minLenght, maxGap);
 	analyzer = new Analyzer(maxBr,brDiff,maxLF);
 
 	return true;

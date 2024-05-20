@@ -11,14 +11,14 @@ VideoTester::~VideoTester()
     video.release();
 }
 
-bool VideoTester::init(double maxBr, double brDiff, double maxLF)
+bool VideoTester::init(double maxBr, double brDiff, double maxLF, int threshold, double minLenght, double maxGap)
 {
     if (!video.open(fileName)) {
         std::cerr << "ERROR: Unable to open video file." << std::endl;
         return false;
     }
 
-    imageTester = new ImageTester(maxBr, brDiff, maxLF);
+    imageTester = new ImageTester(maxBr, brDiff, maxLF, threshold, minLenght, maxGap);
 
     return true;
 }

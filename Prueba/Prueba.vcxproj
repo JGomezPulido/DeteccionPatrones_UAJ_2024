@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Analyzer.cpp" />
+    <ClCompile Include="..\src\Configuration.cpp" />
     <ClCompile Include="..\src\ImageTester.cpp" />
     <ClCompile Include="..\src\ImgPreProcessor.cpp" />
     <ClCompile Include="..\src\ImgPreProcessorBW.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Analyzer.h" />
     <ClInclude Include="..\src\checkML.h" />
+    <ClInclude Include="..\src\Configuration.h" />
     <ClInclude Include="..\src\ImageTester.h" />
     <ClInclude Include="..\src\ImgPreProcessor.h" />
     <ClInclude Include="..\src\ImgPreProcessorBW.h" />

@@ -9,6 +9,7 @@
     <ClCompile Include="..\src\StraightPatternDetector.cpp" />
     <ClCompile Include="..\src\Menu.cpp" />
     <ClCompile Include="..\src\VideoTester.cpp" />
+    <ClCompile Include="..\src\Configuration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Analyzer.h" />
@@ -20,5 +21,6 @@
     <ClInclude Include="..\src\StraightPatternDetector.h" />
     <ClInclude Include="..\src\VideoTester.h" />
     <ClInclude Include="..\src\checkML.h" />
+    <ClInclude Include="..\src\Configuration.h" />
   </ItemGroup>
 </Project>

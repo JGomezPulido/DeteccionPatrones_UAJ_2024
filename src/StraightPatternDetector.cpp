@@ -5,14 +5,15 @@
 #include "opencv2/highgui.hpp"
 #include <iostream>
 #include "checkML.h"
-StraightPatternDetector::StraightPatternDetector(): lines(), linesP(), groups(), maxGroup(0)
+StraightPatternDetector::StraightPatternDetector(int th, double minL, double maxG)
+	: threshold(th), minLenght(minL), maxGap(maxG), lines(), linesP(), groups(), maxGroup(0)
 {}
 
 void StraightPatternDetector::detectLines(const cv::Mat& destino)
 {
 	// El metodo HoughLinesP detecta lineas en una imagen y las guarda en un vector de Vec4i
 	// Vec4i es un vector de 4 enteros, que representan las coordenadas de dos puntos en la imagen
-	cv::HoughLinesP(destino, linesP, 1, CV_PI / 180, 50, 50, 10); 
+	cv::HoughLinesP(destino, linesP, 1, CV_PI / 180, threshold, minLenght, maxGap); 
 	lines.clear();
 	//Calculate information for each line detected
 	for (const Vec4i& line : linesP) {

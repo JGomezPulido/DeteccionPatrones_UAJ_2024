@@ -18,7 +18,7 @@ typedef std::unordered_multimap<int, LineInfo> PatternMap;
 class StraightPatternDetector: public PatternDetector
 {
 public:
-	StraightPatternDetector();
+	StraightPatternDetector(int th, double minL, double maxG);
 	~StraightPatternDetector() {};
 
 	// Detecta las lineas de la imagen
@@ -39,5 +39,11 @@ protected:
 	PatternMap groups;
 	// Identificador de grupo de lineas paralelas
 	int maxGroup;
+	// Limite de linea que termina el ancho de linea que se detecta
+	int threshold;
+	// Minimo de longitud de la linea a detectar
+	double minLenght;
+	// Maximo de espacio entre puntos de la linea a detectar
+	double maxGap;
 };
 
