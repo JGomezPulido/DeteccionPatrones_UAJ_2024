@@ -34,8 +34,6 @@ cv::Mat ImgPreProcessorBW::processImage(Mat image)
 	// Apply Canny edge detection
 	Mat edges;
 	Canny(destNoNoise, edges, cannyTh1, cannyTh2);
-	//imshow("Detected Lines (in red) - Probabilistic Line Transform", edges);
-	//waitKey();
 
 	return edges;
 }
@@ -43,5 +41,4 @@ cv::Mat ImgPreProcessorBW::processImage(Mat image)
 void ImgPreProcessorBW::lessNoise(Mat source)
 {
 	medianBlur(source, destNoNoise, 7);
-	//GaussianBlur(source, destNoNoise, Size(1, 1), 0.33, 0.33);
 }

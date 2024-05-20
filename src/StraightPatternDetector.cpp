@@ -20,7 +20,7 @@ void StraightPatternDetector::detectLines(const cv::Mat& destino)
 	}
 
 	std::cout << "Number of lines: " << lines.size() << std::endl;
-	// Agrupamos las lineas por líneas paralelas
+	// Agrupamos las lineas por lineas paralelas
 	groups.clear();
 	maxGroup = 0;
 	for (int i = 0; i < lines.size(); i++) {
