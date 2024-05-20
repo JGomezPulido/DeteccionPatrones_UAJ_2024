@@ -1,0 +1,13 @@
+MaxBrightness
+0.4
+DiffBrightness
+0.2
+MaxLinesFlash
+5
+Thresholds
+50
+MinLenght
+50
+MaxGap
+10
+--

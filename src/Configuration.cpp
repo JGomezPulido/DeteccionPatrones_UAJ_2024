@@ -7,7 +7,7 @@ Configuration::Configuration(const std::string& file): _fileName(file)
 
 void Configuration::readConfiguration(ConfigInfo& config)
 {
-	std::ifstream entry("bin/" + _fileName);
+	std::ifstream entry("Configuration/" + _fileName);
 
 	if (!entry.is_open())
 	{

@@ -29,6 +29,7 @@ x86/
 bld/
 [Bb]in/*
 ![Bb]in/Assets/
+![Bb]in/Configuration/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
