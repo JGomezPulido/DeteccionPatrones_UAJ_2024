@@ -15,7 +15,7 @@ Analyzer::~Analyzer()
 }
 
 // Si el brillo promedio de la imagen es demasiado alto, se considera peligroso
-bool Analyzer::analyzeBrightness(cv::Mat image)
+bool Analyzer::analyzeBrightness(const cv::Mat& image)
 {
 	double averageBrightness = cv::mean(image)[0];
 	averageBrightness = averageBrightness / 255.0; // Normalización opcional	
@@ -26,7 +26,7 @@ bool Analyzer::analyzeBrightness(cv::Mat image)
 }
 
 // Se considera que si el brillo supera el maximo o la diferencia de brillo entre frames es mayor a 20, se considera peligroso
-bool Analyzer::analyzeBrightness(double& brightness,cv::Mat frame2)
+bool Analyzer::analyzeBrightness(double& brightness,const cv::Mat& frame2)
 {
 	double averageBrightness = cv::mean(frame2)[0];
 	averageBrightness = averageBrightness / 255.0; // Normalización opcional	
@@ -45,7 +45,7 @@ bool Analyzer::analyzeFlash(int& nLineasF1, int nLineasF2)
 	return diffNLineas > maxLinesFlash;
 }
 
-bool Analyzer::analyze(cv::Mat ogImg, const PatternMap& pattern, double& brightness, int& flash)
+bool Analyzer::analyze(const cv::Mat& ogImg, const PatternMap& pattern, double& brightness, int& flash)
 {
 	// Si el parpadeo entre frame y frame es muy grande (Teniendo en cuenta la diferencia de brillo y la diferencia entre patrones)
 	if (analyzeBrightness(brightness, ogImg) && analyzeFlash(flash,pattern.size()))
@@ -57,7 +57,7 @@ bool Analyzer::analyze(cv::Mat ogImg, const PatternMap& pattern, double& brightn
 }
 
 
-bool Analyzer::analyze(cv::Mat ogImg)
+bool Analyzer::analyze(const cv::Mat& ogImg)
 {
 	return analyzeBrightness(ogImg);
 }

@@ -6,7 +6,7 @@
 #include "Analyzer.h"
 #include "checkML.h"
 
-cv::Mat ImgPreProcessorBW::processImage(Mat image)
+cv::Mat ImgPreProcessorBW::processImage(const Mat& image)
 {
 
 	// Cambia la resolucion

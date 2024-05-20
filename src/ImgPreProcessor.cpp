@@ -6,7 +6,7 @@ ImgPreProcessor::ImgPreProcessor(std::string fileName)
 	imagePath = fileName;
 }
 
-ImgPreProcessor::ImgPreProcessor(Mat image)
+ImgPreProcessor::ImgPreProcessor(const Mat& image)
 {
 	source = image;
 }

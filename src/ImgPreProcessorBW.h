@@ -4,11 +4,11 @@
 class ImgPreProcessorBW : public ImgPreProcessor
 {
 public:
-	 cv::Mat processImage(Mat image) override;
+	 cv::Mat processImage(const Mat& image) override;
 	 ImgPreProcessorBW() : ImgPreProcessor() {};
 
 	 ImgPreProcessorBW(std::string fileName) :ImgPreProcessor(fileName) {};
-	 ImgPreProcessorBW(Mat image) : ImgPreProcessor(image) {};	
+	 ImgPreProcessorBW(const Mat& image) : ImgPreProcessor(image) {};	
 
 	 ~ImgPreProcessorBW() {};
 private: 

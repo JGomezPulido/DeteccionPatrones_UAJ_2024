@@ -64,7 +64,7 @@ bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 	return patternDetector->detectPattern() && analyzer->analyze(ogImage);
 }
 
-bool ImageTester::testFrame(cv::Mat& imageParam, double& brightness, int& flash) {
+bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash) {
 
 
 	if (imageParam.channels() != 1) {
