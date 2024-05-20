@@ -32,6 +32,7 @@ void VideoTester::testVideo()
     double brightness = 0;
     int flash = 0;
     bool dangerousPattern = false;
+    bool videoPeligroso = false;
 
     while (video.read(frame)) {
         // Verificar si ha llegado al final del video
@@ -49,6 +50,9 @@ void VideoTester::testVideo()
             }
             else if (i == -1) {
                 i = nFrame - lastDangerousFrame;
+            }
+            if (!videoPeligroso) {
+                videoPeligroso = true;
             }
             i++;
         }
@@ -70,5 +74,13 @@ void VideoTester::testVideo()
     {
         std::cout << "El video es peligroso entre los frames " << lastDangerousFrame << " y " << nFrame << std::endl;   
     }
+    if(videoPeligroso)
+    {
+		std::cout << "El video es peligroso." << std::endl;
+	}
+	else
+	{
+		std::cout << "El video no es peligroso." << std::endl;
+	}
     std::cout << "Fin del video." << std::endl; 
 }
