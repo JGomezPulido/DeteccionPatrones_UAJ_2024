@@ -14,7 +14,7 @@ private:
 	bool analyzeBrightness(cv::Mat frame);
 	bool analyzeBrightness(double& brightness, cv::Mat frame2);
 	bool analyzeFlash(int& nLineasF1, int nLineasF2);
-	public:
+public:
 
 	Analyzer(double maxBr, double brDiff, double maxLF);
 	~Analyzer();
