@@ -10,12 +10,9 @@ StraightPatternDetector::StraightPatternDetector(): lines(), linesP(), groups(),
 
 void StraightPatternDetector::detectLines(const cv::Mat& destino)
 {
-	//El metodo HoughLinesP detecta lineas en una imagen y las guarda en un vector de Vec4i
+	// El metodo HoughLinesP detecta lineas en una imagen y las guarda en un vector de Vec4i
 	// Vec4i es un vector de 4 enteros, que representan las coordenadas de dos puntos en la imagen
-	// Probablemente haya que meter parametros en este metodo para detectar las lineas que queremos
-
-	// Esta funcion detecta lineas en una imagen binaria usando el algoritmo probabilistico de Hough
-	cv::HoughLinesP(destino, linesP, 1, CV_PI / 180, 50, 50, 10); // runs the actual detection
+	cv::HoughLinesP(destino, linesP, 1, CV_PI / 180, 50, 50, 10); 
 	lines.clear();
 	//Calculate information for each line detected
 	for (const Vec4i& line : linesP) {
@@ -23,7 +20,7 @@ void StraightPatternDetector::detectLines(const cv::Mat& destino)
 	}
 
 	std::cout << "Number of lines: " << lines.size() << std::endl;
-	//agrupamos las lineas por líneas paralelas
+	// Agrupamos las lineas por líneas paralelas
 	groups.clear();
 	maxGroup = 0;
 	for (int i = 0; i < lines.size(); i++) {
@@ -39,15 +36,14 @@ void StraightPatternDetector::detectLines(const cv::Mat& destino)
 		if(line.isInGroup) maxGroup++;
 	}
 
-	// El HoughLinesP devuelve SEGMENTOS de linea, no una linea completa, segun los parametros que se le pasen (Como la longitud minima de linea)
-		// Draw the lines
+	// Por ultimo, dibujamos las lineas detectadas
 	drawDetectedLines(destino);
 
 }
 
 bool StraightPatternDetector::detectPattern()
 {
-	//Se filtran los grupos que tengan menos de 10 lineas
+	// Se filtran los grupos que tengan menos de 10 lineas
 	int validGroups = 0;
 	for (int group = 0; group < maxGroup; group++) {
 		if (groups.count(group) < 10) {
@@ -63,7 +59,6 @@ bool StraightPatternDetector::detectPattern()
 	return groups.size() > 0;
 }
 
-
 void StraightPatternDetector::drawDetectedLines(const cv::Mat& img)
 {
 	Mat tmp;
@@ -72,12 +67,8 @@ void StraightPatternDetector::drawDetectedLines(const cv::Mat& img)
 	{
 		cv::line(tmp, mLine.p1, mLine.p2, Scalar(0, 0, 255), 1, LINE_AA);
 	}
-	// Show results
 	cv::imshow("Detected Lines (in red) - Probabilistic Line Transform", tmp);
-	// Wait and Exit
 }
-
-
 
 LineInfo::LineInfo(const cv::Vec4i& line)
 {
