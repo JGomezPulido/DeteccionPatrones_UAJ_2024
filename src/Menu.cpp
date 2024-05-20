@@ -1,9 +1,10 @@
 #include "Menu.h"
 #include <iostream>
-#include "checkML.h"
+
 #include "ImageTester.h"
 #include "VideoTester.h"
 #include "Configuration.h"
+#include "checkML.h"
 
 // METODOS PUBLICOS
 void Menu::runMenu(int& inputOption, std::string& path) {
