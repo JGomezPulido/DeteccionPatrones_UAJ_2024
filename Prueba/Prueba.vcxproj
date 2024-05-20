@@ -24,6 +24,7 @@
     <ProjectGuid>{db57fb4e-930e-4df2-90cf-26514532a86f}</ProjectGuid>
     <RootNamespace>Prueba</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DeteccionPatrones</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
