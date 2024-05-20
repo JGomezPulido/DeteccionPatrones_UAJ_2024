@@ -59,9 +59,11 @@ bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 	// Detectamos las lineas en la imagen
 	patternDetector->detectLines(img);
 
+	bool pattern = patternDetector->detectPattern();
+	bool bright = analyzer->analyze(ogImage);
 
 	// Si hay mucho brillo y un patron de lineas en la imagen, se considera peligrosa la imagen	
-	return patternDetector->detectPattern() && analyzer->analyze(ogImage);
+	return (pattern && bright);	
 }
 
 bool ImageTester::testFrame(const cv::Mat& imageParam, double& brightness, int& flash) {
