@@ -13,8 +13,8 @@ bool Menu::runMenu(int& inputOption, std::string& path) {
 
 	// Salir
 	if (!inputOption) {
-		std::cerr << "No se ha registrado ningun input";
-		return false;
+		std::cerr << "No se ha registrado ningun input \n";
+		return true;
 	}
 
 	// Se usa 0.4, 0.2, 5 como valores por defecto para analizar la imagen o video, pero se pueden cambiar segun se desee
