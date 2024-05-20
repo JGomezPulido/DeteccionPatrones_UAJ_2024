@@ -26,7 +26,7 @@ public:
 	bool init(double maxBr, double brDiff, double maxLF, int threshold, double minLenght, double maxGap);
 	void testImage();
 	bool isImageDangerous(const cv::Mat& imageParam);
-	bool testFrame(const cv::Mat& imageParam, double& brightness, int& flash);
+	bool testFrame(cv::Mat& imageParam, double& brightness, int& flash);
 
 
 };
