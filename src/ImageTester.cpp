@@ -2,7 +2,7 @@
 #include "ImgPreProcessorBW.h"
 #include "Analyzer.h"
 #include "StraightPatternDetector.h"
-
+#include "checkML.h"
 
 ImageTester::ImageTester(std::string pathFile) : fileName(pathFile) {}
 
@@ -58,6 +58,7 @@ bool ImageTester::isImageDangerous(const cv::Mat& imageParam)
 
 	// Detectamos las lineas en la imagen
 	patternDetector->detectLines(img);
+
 
 	// Si hay mucho brillo y un patron de lineas en la imagen, se considera peligrosa la imagen	
 	return patternDetector->detectPattern() && analyzer->analyze(ogImage);

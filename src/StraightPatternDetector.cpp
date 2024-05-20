@@ -4,6 +4,7 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 #include <iostream>
+#include "checkML.h"
 StraightPatternDetector::StraightPatternDetector(): lines(), linesP(), groups(), maxGroup(0)
 {}
 

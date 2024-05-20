@@ -1,5 +1,5 @@
 #include "Analyzer.h"
-
+#include "checkML.h"
 
 Analyzer::Analyzer(double maxBr, double brDiff, double maxLF)
 {

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <opencv2/highgui.hpp>
 #include "Analyzer.h"
+#include "checkML.h"
 
 cv::Mat ImgPreProcessorBW::processImage(Mat image)
 {
