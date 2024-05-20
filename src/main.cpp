@@ -15,11 +15,18 @@ int main(int argc, char** argv)
 	int option = 0;
 	string path = "";
 	Menu* menu = new Menu();
-	menu->runMenu(option, path);
-
-	// Delete menu
-	delete menu;
-
-	cv::waitKey();
-	return 0;
+	if (menu->runMenu(option, path))
+	{
+		// Delete menu
+		delete menu;
+		cv::waitKey();
+		return 0;
+	}
+	else
+	{
+		// Delete menu
+		delete menu;
+		std::cerr << "ERROR: No se ha podido inicializar el menu";
+		return -1;
+	}
 }

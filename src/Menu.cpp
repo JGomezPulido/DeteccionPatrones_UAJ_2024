@@ -7,13 +7,14 @@
 #include "checkML.h"
 
 // METODOS PUBLICOS
-void Menu::runMenu(int& inputOption, std::string& path) {
+bool Menu::runMenu(int& inputOption, std::string& path) {
 	inputOption = isImageOrVideo();
 	if(inputOption) path = getFilePath();
 
 	// Salir
 	if (!inputOption) {
-		// AAAAA
+		std::cerr << "No se ha registrado ningun input";
+		return false;
 	}
 
 	// Se usa 0.4, 0.2, 5 como valores por defecto para analizar la imagen o video, pero se pueden cambiar segun se desee
@@ -32,7 +33,7 @@ void Menu::runMenu(int& inputOption, std::string& path) {
 			std::cerr << "ERROR: No se ha podido inicializar image tester";
 			delete iTester;
 			iTester = nullptr;
-			// AAAAA
+			return false;
 		}
 		iTester->testImage();
 		delete iTester;
@@ -44,12 +45,13 @@ void Menu::runMenu(int& inputOption, std::string& path) {
 			std::cerr << "ERROR: No se ha podido inicializar video tester";
 			delete vTester;
 			vTester = nullptr;
-			// AAAA
+			return false;
 		}
 		vTester->testVideo();
 		delete vTester;
 	}
 
+	return true;
 }
 
 

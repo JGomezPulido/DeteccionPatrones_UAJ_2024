@@ -8,7 +8,7 @@ private:
 public:
 	Menu() { pathFile_ = ""; optionType = -1; }
 	~Menu() {};
-	void runMenu(int& inputOption, std::string& path);
+	bool runMenu(int& inputOption, std::string& path);
 
 private:
 	int isImageOrVideo();

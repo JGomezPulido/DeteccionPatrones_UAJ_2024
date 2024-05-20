@@ -24,7 +24,7 @@ bool ImageTester::init(double maxBr, double brDiff, double maxLF, int threshold,
 {
 	// Leer la imagen
 	try {
-		image = imread(samples::findFile("Assets/" + fileName), IMREAD_GRAYSCALE);
+		image = imread(samples::findFile(fileName), IMREAD_GRAYSCALE);
 	}
 	catch (Exception e) {
 		// Comunicar que no se ha encontrado la imagen
